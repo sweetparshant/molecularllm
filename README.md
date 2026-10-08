@@ -24,7 +24,7 @@ target SMILES ──► proposers ──► search ──► routes ──► ra
                   ├ hand-written   └ stops at molecules that are
                   │  rules           available (your list / PubChem)
                   └ learned templates
--------------------------------------------------------------------------------------------------------------------------------------------
+
 A proposer suggests ways to break a molecule into simpler precursors. Proposers are interchangeable: hand-written rules, learned templates, or both.
 A depth-limited search applies proposers recursively until every precursor is an available building block.
 Routes are ranked by step count and, when learned templates are used, by how often the template appears in the training data.
@@ -59,7 +59,7 @@ Quick start
 Plan a route for any molecule:
 -----------------------------------------------------------------------------------
 python plan.py --target "CCNC(=O)c1ccc(-c2ccccc2)cc1" --blocks my_blocks.txt --draw
------------------------------------------------------------------------------------
+
 Run python plan.py with no arguments and it asks for the target and building blocks.
 
 my_blocks.txt is a plain text file with one SMILES per line (# starts a comment):
@@ -75,7 +75,7 @@ python draw.py                                        # draw example targets and
 python draw.py mol "CCO" --name ethanol               # draw one molecule
 python run_demo.py                                    # example routes for built-in targets
 Learning from data
------------------------------------------------------------------------------------------------
+
 Train on one file, test on a different one, so the results are honest.
 
 python learn_templates.py path/to/raw_train.csv --min-count 2
@@ -106,7 +106,7 @@ reactlab/
 ├── data/                 small sample reaction file
 ├── models/               learned templates (created by learn_templates.py)
 └── cache/, images/       created automatically
---------------------------------------------------------------------------------------------------
+
 Files may differ slightly between releases.
 
 Evaluation
@@ -157,5 +157,5 @@ Citation
 
 If you use this software in academic work, please cite it:
 
-[Your name]. reactlab: an explainable, learnable retrosynthesis planner. GitHub, [year].
-https://github.com/[your-username]/[repository]
+Parshant Sharma. reactlab: an explainable, learnable retrosynthesis planner. GitHub, 2026.
+https://github.com/sweetparshant/molecularllm
