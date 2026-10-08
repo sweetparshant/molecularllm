@@ -84,6 +84,7 @@ python plan.py --target "<SMILES>" --blocks my_blocks.txt --templates models/tem
 Input: a CSV with atom-mapped reaction SMILES in the form reactants>reagents>product. USPTO-50k files work (raw_train.csv, raw_val.csv, raw_test.csv). If your column name differs, pass --col.
 This repository does not include or redistribute any dataset. Download it yourself and check its license.
 Options such as --top-templates and --beam trade completeness for speed.
+
 Project layout
 ------------------------------------------------------------------------------------------------
 reactlab/
