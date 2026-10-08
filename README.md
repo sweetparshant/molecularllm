@@ -1,4 +1,4 @@
-reactlab
+#reactlab
 
 An explainable, logic-based retrosynthesis planner that can also learn from reaction data.
 
@@ -18,11 +18,13 @@ Screens requests against a small set of safety alerts.
 Some features arrived in later releases (for example learned templates and the command-line planner). If a command below is missing in your copy, check the Releases page for the version you have.
 
 How it works
+-------------------------------------------------------------------------------------------------------------------------------------------
 target SMILES ──► proposers ──► search ──► routes ──► ranking ──► explanation + images
                   │                │
                   ├ hand-written   └ stops at molecules that are
                   │  rules           available (your list / PubChem)
                   └ learned templates
+-------------------------------------------------------------------------------------------------------------------------------------------
 A proposer suggests ways to break a molecule into simpler precursors. Proposers are interchangeable: hand-written rules, learned templates, or both.
 A depth-limited search applies proposers recursively until every precursor is an available building block.
 Routes are ranked by step count and, when learned templates are used, by how often the template appears in the training data.
@@ -32,13 +34,13 @@ Installation
 Requirements: Python 3.11, RDKit. A GPU is optional and only needed for the Hugging Face model checks and future model-based ranking.
 
 Option A: conda
-
+---------------
 conda create -n reactlab -c conda-forge python=3.11 rdkit pip
 conda activate reactlab
 pip install transformers accelerate peft pandas pillow
 
 Option B: pip and a virtual environment
-
+---------------------------------------
 python -m venv .venv
 .venv\Scripts\activate          # Windows (use: source .venv/bin/activate on Linux/macOS)
 pip install rdkit transformers accelerate peft pandas pillow
@@ -55,9 +57,9 @@ python run_tests.py
 Quick start
 
 Plan a route for any molecule:
-
+-----------------------------------------------------------------------------------
 python plan.py --target "CCNC(=O)c1ccc(-c2ccccc2)cc1" --blocks my_blocks.txt --draw
-
+-----------------------------------------------------------------------------------
 Run python plan.py with no arguments and it asks for the target and building blocks.
 
 my_blocks.txt is a plain text file with one SMILES per line (# starts a comment):
@@ -67,13 +69,13 @@ CCN          # ethylamine
 OC(=O)c1ccc(Br)cc1
 
 Other useful commands:
-
+----------------------------------------------------------------------------------------------
 python plan.py --target "<SMILES>" --pubchem          # also use PubChem (see caveat below)
 python draw.py                                        # draw example targets and routes
 python draw.py mol "CCO" --name ethanol               # draw one molecule
 python run_demo.py                                    # example routes for built-in targets
 Learning from data
-
+-----------------------------------------------------------------------------------------------
 Train on one file, test on a different one, so the results are honest.
 
 python learn_templates.py path/to/raw_train.csv --min-count 2
@@ -83,6 +85,7 @@ Input: a CSV with atom-mapped reaction SMILES in the form reactants>reagents>pro
 This repository does not include or redistribute any dataset. Download it yourself and check its license.
 Options such as --top-templates and --beam trade completeness for speed.
 Project layout
+------------------------------------------------------------------------------------------------
 reactlab/
 ├── plan.py               command-line planner (any target, any building blocks)
 ├── learn_templates.py    learn templates from a reaction dataset
@@ -103,7 +106,7 @@ reactlab/
 ├── data/                 small sample reaction file
 ├── models/               learned templates (created by learn_templates.py)
 └── cache/, images/       created automatically
-
+--------------------------------------------------------------------------------------------------
 Files may differ slightly between releases.
 
 Evaluation
