@@ -1,4 +1,4 @@
-#reactlab
+**reactlab**
 
 An explainable, logic-based retrosynthesis planner that can also learn from reaction data.
 
