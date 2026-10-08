@@ -1,0 +1,14 @@
+name: reactlab
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - rdkit
+  - pip
+  - pip:
+      - transformers
+      - accelerate
+      - peft
+      - pandas
+# PyTorch with CUDA is installed separately (the command depends on your driver):
+# get it from https://pytorch.org/get-started/locally/ after creating this env.
